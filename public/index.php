@@ -38,11 +38,11 @@
     echo "Вы на странице: $url, будьте внимательны!<br>";
 
     if ($url == "/") {
-        require "views/main.php";
+        require "../views/main.php";
     } elseif ($url == "/toyota") {
-        require "views/toyota.php";
+        require "../views/toyota.php";
     } elseif ($url == "/honda") {
-        require "views/honda.php";
+        require "../views/honda.php";
     } 
     ?>
     </div>
