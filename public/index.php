@@ -39,7 +39,7 @@
 
     if ($url == "/") {
         require "../views/main.php";
-    } elseif ($url == "/toyota") {
+    } elseif (preg_match("#^/toyota#",$url)) {
         require "../views/toyota.php";
     } elseif ($url == "/honda") {
         require "../views/honda.php";
