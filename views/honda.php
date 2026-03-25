@@ -11,7 +11,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/honda/info">Информация</a>
+    <a class="nav-link <?= $is_info ? "active" : '' ?>" href="/honda/info">Информация</a>
   </li>
 </ul>
 <br>
