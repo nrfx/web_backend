@@ -4,8 +4,16 @@
 ?>
 
 <h1>Toyota</h1>
-<a href="/toyota/image">Картинка</a>
-<a href="/toyota/info">Информация</a>
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link <?= $is_image ? "active" : '' ?>" href="/toyota/image">
+        Картинка
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/toyota/info">Информация</a>
+  </li>
+</ul>
 <br>
 <?php if ($is_image) { ?>
     <?php include('toyota_image.php') ?>

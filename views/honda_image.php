@@ -1,0 +1,1 @@
+<img src="../images/honda.jpg" alt="" style="width: 50%; height: auto;">
