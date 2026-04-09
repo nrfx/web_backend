@@ -1,0 +1,17 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>{{title}}</h1>
+    
+    <ul class="nav nav-pills">
+        {% for item in objectMenu %}
+            <li class="nav-item">
+                <a class="nav-link {{ item.active ? 'active' : '' }}" href="{{ item.url }}">{{ item.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+
+    {% block objectContent %}
+    {% endblock %}
+{% endblock %}

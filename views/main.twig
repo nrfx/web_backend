@@ -1,0 +1,21 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Главная страница</h1>
+
+    <div class="container">
+        {% for object in objects %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <ul class="nav nav-pills">
+                        {% for item in object.items %}
+                            <li class="nav-item">
+                                <a class="nav-link {{ item.title == object.name ? 'active' : '' }}" href="{{ item.url }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
