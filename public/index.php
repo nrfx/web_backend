@@ -1,6 +1,15 @@
 <?php
 
 require_once '../vendor/autoload.php';
+require_once "controllers/MainController.php";
+require_once "controllers/ToyotaController.php";
+require_once "controllers/ToyotaImageController.php";
+require_once "controllers/ToyotaInfoController.php";
+require_once "controllers/Controller404.php"; 
+require_once "controllers/HondaController.php";
+require_once "controllers/HondaImageController.php";
+require_once "controllers/HondaInfoController.php";
+require_once "controllers/Controller404.php";
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 
@@ -12,6 +21,7 @@ $title = "";
 $template = "";
 
 $context = [];
+$controller = null; 
 
 $menu = [
         ['title' => 'Главная', 'url' => '/'],
@@ -88,8 +98,34 @@ if ($url == "/") {
     ];
 }
 
+if ($url == "/") {
+    $controller = new MainController($twig);
+} elseif (preg_match("#^/toyota/image#", $url)) { 
+    $controller = new ToyotaImageController($twig);
+} elseif (preg_match("#^/toyota/info#", $url)) {
+    $controller = new ToyotaInfoController($twig);
+} elseif (preg_match("#^/toyota#", $url)) {
+    $controller = new ToyotaController($twig);
+} elseif (preg_match("#^/honda/image#", $url)) {
+    $controller = new HondaImageController($twig);
+} elseif (preg_match("#^/honda/info#", $url)) {
+    $controller = new HondaInfoController($twig);
+} elseif (preg_match("#^/honda#", $url)) {
+    $controller = new HondaController($twig);
+} 
+
 $context['title'] = $title;
 $context['menu'] = $menu;
 
-
-echo $twig->render($template, $context);
+if ($controller) {
+    $controller_context = $controller->getContext();
+    $context = array_merge($context, $controller_context);
+    echo $twig->render($controller->template, $context);
+} elseif ($template) {
+    echo $twig->render($template, $context);
+} else {
+    $controller404 = new Controller404($twig);
+    $context = array_merge($context, $controller404->getContext());
+    http_response_code(404);
+    echo $twig->render($controller404->template, $context);
+}
