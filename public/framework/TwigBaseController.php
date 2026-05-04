@@ -19,9 +19,7 @@ class TwigBaseController extends BaseController
         $context = parent::getContext();
         $context['title'] = $this->title;
         $context['menu'] = [
-            ['title' => 'Главная', 'url' => '/'],
-            ['title' => 'Honda', 'url' => '/honda'],
-            ['title' => 'Toyota', 'url' => '/toyota']
+            ['title' => 'Главная', 'url' => '/']
         ];
 
         return $context;

@@ -1,0 +1,23 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Поиск</h1>
+
+    <form action="">
+        <select name="type">
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+        </select>
+        <label>Название <input type="text" name="title"></label>
+
+        <button type="submit">Найти</button>
+    </form>
+
+    {% if objects is not empty %}
+        <ul>
+            {% for obj in objects %}
+                <li><a href="/car-objects/{{ obj.id }}">{{ obj.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
