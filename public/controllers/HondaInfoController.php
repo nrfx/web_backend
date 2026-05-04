@@ -1,10 +1,11 @@
 <?php
 require_once "HondaController.php";
 
-class HondaInfoController extends HondaController {
+class HondaInfoController extends HondaController
+{
     public $template = "honda_info.twig";
 
-    public function getContext() : array
+    public function getContext(): array
     {
         $context = parent::getContext();
         $context['objectMenu'] = [

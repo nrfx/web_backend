@@ -1,4 +1,5 @@
 {% extends "__layout.twig" %}
+{% import "macros.twig" as ui %}
 
 {% block content %}
     <h1>{{title}}</h1>
@@ -6,12 +7,17 @@
     <ul class="nav nav-pills">
         {% for item in objectMenu %}
             <li class="nav-item">
-                <a class="nav-link {{ item.active ? 'active' : '' }}" href="{{ item.url }}">{{ item.title }}</a>
+                {{ ui.btn(item.title, item.url, item.active) }}
             </li>
         {% endfor %}
     </ul>
     <br>
 
     {% block objectContent %}
+        {% if description is defined %}
+            <p>{{ description }}</p>
+        {% else %}
+            <p>Выберите вверху какую информацию хотите посмотреть =О</p>
+        {% endif %}
     {% endblock %}
 {% endblock %}

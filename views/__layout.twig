@@ -1,3 +1,4 @@
+{% import "macros.twig" as ui %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +18,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    {% for item in menu %}
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Главная</a>
+                    </li>
+                    <!-- остальные заменил на цикл по типам -->
+                    {% for type in types %}
                         <li class="nav-item">
-                            <a class="nav-link {{ title == item.title ? 'active' }}" href="{{item.url}}">{{item.title}}</a>
+                            <!-- добавил href="/?type={{ type.type }}" -->
+                            <a class="nav-link" href="/?type={{ type.type }}">{{ type.type|title }}</a>
                         </li>
                     {% endfor %}
                 </ul>

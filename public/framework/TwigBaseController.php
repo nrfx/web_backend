@@ -1,28 +1,35 @@
 <?php
 require_once "BaseController.php";
 
-class TwigBaseController extends BaseController {
-    public $title = ""; 
+class TwigBaseController extends BaseController
+{
+    public $title = "";
     public $template = "";
     protected \Twig\Environment $twig;
-    
-     
-    public function __construct($twig)
+
+
+    public function setTwig($twig)
     {
         $this->twig = $twig;
     }
-    
+
     // переопределяем функцию контекста
-    public function getContext() : array
+    public function getContext(): array
     {
         $context = parent::getContext();
         $context['title'] = $this->title;
+        $context['menu'] = [
+            ['title' => 'Главная', 'url' => '/'],
+            ['title' => 'Honda', 'url' => '/honda'],
+            ['title' => 'Toyota', 'url' => '/toyota']
+        ];
 
         return $context;
     }
-    
 
-    public function get() {
+
+    public function get()
+    {
         echo $this->twig->render($this->template, $this->getContext());
     }
 }

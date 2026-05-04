@@ -3,17 +3,16 @@
 {% block content %}
     <h1>Главная страница</h1>
 
-    <div class="container">
-        {% for object in objects %}
-            <div class="card mb-3">
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+        {% for object in car_objects %}
+            <div class="card" style="width: 200px; text-align: center;">
+                <img src="{{ object.image }}" class="card-img-top" alt="{{ object.title }}" style="height: 150px; object-fit: cover;">
                 <div class="card-body">
-                    <ul class="nav nav-pills">
-                        {% for item in object.items %}
-                            <li class="nav-item">
-                                <a class="nav-link {{ item.title == object.name ? 'active' : '' }}" href="{{ item.url }}">{{ item.title }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <a href="/car-objects/{{object.id}}" class="btn btn-primary w-100 mb-2">{{ object.title }}</a>
+                    <div>
+                        <a href="/car-objects/{{object.id}}?show=image">Картинка</a>
+                        <a href="/car-objects/{{object.id}}?show=info">Описание</a>
+                    </div>
                 </div>
             </div>
         {% endfor %}

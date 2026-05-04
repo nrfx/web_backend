@@ -1,13 +1,14 @@
 <?php
 require_once "ToyotaController.php";
 
-class ToyotaImageController extends ToyotaController {
+class ToyotaImageController extends ToyotaController
+{
     public $template = "image.twig";
 
-    public function getContext() : array
+    public function getContext(): array
     {
         $context = parent::getContext();
-        $context['imagePath'] = "/images/car.jpg";
+        $context['imagePath'] = "/images/wish.jpg";
         $context['objectMenu'] = [
             ['title' => 'Картинка', 'url' => '/toyota/image', 'active' => true],
             ['title' => 'Информация', 'url' => '/toyota/info', 'active' => false]

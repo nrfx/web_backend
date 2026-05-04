@@ -1,0 +1,13 @@
+{% import "macros.twig" as ui %}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <ul class="nav nav-pills">
+            {% for item in object.items %}
+                <li class="nav-item">
+                    {{ ui.btn(item.title, item.url, item.title == object.name) }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
