@@ -64,13 +64,10 @@ class Router
         $controllerInstance->setPDO($this->pdo);
         $controllerInstance->setParams($matches);
 
-        // проверяем не является ли controllerInstance наследником TwigBaseController
-        // и если является, то передает в него twig
         if ($controllerInstance instanceof TwigBaseController) {
             $controllerInstance->setTwig($this->twig);
         }
 
-        // вызываем
-        return $controllerInstance->get();
+        return $controllerInstance->process_response();
     }
 }

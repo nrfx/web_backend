@@ -1,5 +1,5 @@
 <?php
-require_once "BaseCarTwigController.php";
+require_once __DIR__ . "/BaseCarTwigController.php";
 class ObjectController extends BaseCarTwigController
 {
     public $template = "__object.twig"; // шаблон по умолчанию
@@ -50,7 +50,7 @@ class ObjectController extends BaseCarTwigController
         return $context;
     }
 
-    public function get()
+    public function get(array $context)
     {
         $context = $this->getContext();
         echo $this->twig->render($this->template, $context);

@@ -1,5 +1,5 @@
 <?php
-require_once "BaseCarTwigController.php";
+require_once __DIR__ . "/BaseCarTwigController.php";
 
 class SearchController extends BaseCarTwigController
 {
