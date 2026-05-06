@@ -49,8 +49,8 @@ EOL;
     {
         $context = parent::getContext();
         $context["types"] = [
-            ["type" => "TOYOTA"],
-            ["type" => "HONDA"],
+            ["type" => "Honda"],
+            ["type" => "Toyota"],
         ];
         return $context;
     }
