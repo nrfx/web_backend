@@ -5,7 +5,14 @@
 
     <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
         {% for object in car_objects %}
-            <div class="card" style="width: 200px; text-align: center;">
+            <div class="card position-relative" style="width: 200px; text-align: center;">
+                <div class="position-absolute" style="right: 4px; top: 4px;">
+                    <form action="/car-objects/{{object.id}}/delete" method="POST">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </form>
+                </div>
                 <img src="{{ object.image }}" class="card-img-top" alt="{{ object.title }}" style="height: 150px; object-fit: cover;">
                 <div class="card-body">
                     <a href="/car-objects/{{object.id}}" class="btn btn-primary w-100 mb-2">{{ object.title }}</a>
