@@ -9,6 +9,7 @@ require_once "../controllers/SearchController.php";
 require_once "../controllers/CarObjectCreateController.php";
 require_once "../controllers/CarObjectDeleteController.php";
 require_once "../controllers/CarObjectUpdateController.php";
+require_once "../controllers/CarTypeCreateController.php";
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 
@@ -23,6 +24,7 @@ $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
 $router->add("/search", SearchController::class);
 $router->add("/car-objects/create", CarObjectCreateController::class);
+$router->add("/car-types/create", CarTypeCreateController::class);
 $router->add("/car-objects/(?P<id>\d+)/delete", CarObjectDeleteController::class);
 $router->add("/car-objects/(?P<id>\d+)/update", CarObjectUpdateController::class);
 $router->add("/car-objects/(?P<id>\d+)", ObjectController::class);

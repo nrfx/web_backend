@@ -1,0 +1,54 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Добавление типа объекта</h1>
+    <hr>
+
+    {% if message %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <form action="" method="POST" class="row g-3" enctype="multipart/form-data">
+        <div class="col-6">
+            <label class="form-label">Название типа</label>
+            <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="col-6">
+            <label class="form-label">Изображение</label>
+            <input class="form-control" type="file" name="image">
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Добавить тип</button>
+        </div>
+    </form>
+
+        <hr>
+        <h3>Существующие типы</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Изображение</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for type in types %}
+                    <tr>
+                        <td>{{ type.id }}</td>
+                        <td>{{ type.title }}</td>
+                        <td>
+                            {% if type.image %}
+                                <img src="{{ type.image }}" alt="{{ type.title }}" style="height: 50px; object-fit: cover;">
+                            {% else %}
+                                <span class="text-muted">Нет изображения</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}

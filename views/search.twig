@@ -10,7 +10,7 @@
                 <select id="type" name="type" class="form-select">
                     <option value="">Все</option>
                     {% for type in types %}
-                        <option value="{{ type.type }}">{{ type.type|title }}</option>
+                        <option value="{{ type.title }}">{{ type.title }}</option>
                     {% endfor %}
                 </select>
             </div>

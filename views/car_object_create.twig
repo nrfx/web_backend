@@ -28,8 +28,8 @@
             <label class="form-label">Марка</label>
             <select class="form-control" name="type">
                 {% for type in types %}
-                    <option value="{{ type.type }}" {% if type.type == object.type %}selected{% endif %}>
-                        {{ type.type }}
+                    <option value="{{ type.title }}" {% if type.title == object.type %}selected{% endif %}>
+                        {{ type.title }}
                     </option>
                 {% endfor %}
             </select>

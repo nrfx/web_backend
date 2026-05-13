@@ -24,8 +24,7 @@
                     <!-- остальные заменил на цикл по типам -->
                     {% for type in types %}
                         <li class="nav-item">
-                            <!-- добавил href="/?type={{ type.type }}" -->
-                            <a class="nav-link" href="/?type={{ type.type }}">{{ type.type|title }}</a>
+                            <a class="nav-link" href="/?type={{ type.title }}">{{ type.title }}</a>
                         </li>
                     {% endfor %}
                     <li class="nav-item">
@@ -33,6 +32,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/car-objects/create">Добавить</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/car-types/create">Типы</a>
                     </li>
                 </ul>
             </div>

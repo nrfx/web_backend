@@ -45,13 +45,4 @@ EOL;
 
         $this->get($context);
     }
-    public function getContext(): array
-    {
-        $context = parent::getContext();
-        $context["types"] = [
-            ["type" => "Honda"],
-            ["type" => "Toyota"],
-        ];
-        return $context;
-    }
-}
+}
