@@ -10,17 +10,17 @@
                 <select id="type" name="type" class="form-select">
                     <option value="">Все</option>
                     {% for type in types %}
-                        <option value="{{ type.title }}">{{ type.title }}</option>
+                        <option value="{{ type.id }}" {% if search_type == type.id %}selected{% endif %}>{{ type.title }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="title" class="form-label">Название</label>
-                <input type="text" id="title" name="title" class="form-control">
+                <input type="text" id="title" name="title" class="form-control" value="{{ search_title }}">
             </div>
             <div class="col-md-3">
                 <label for="info" class="form-label">Описание</label>
-                <input type="text" id="info" name="info" class="form-control">
+                <input type="text" id="info" name="info" class="form-control" value="{{ search_info }}">
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-primary">Найти</button>
@@ -30,10 +30,31 @@
 
 
     {% if objects is not empty %}
-        <ul>
-            {% for obj in objects %}
-                <li><a href="/car-objects/{{ obj.id }}">{{ obj.title }}</a></li>
-            {% endfor %}
-        </ul>
+        <hr>
+        <h3>Существующие обьекты</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Изображение</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in objects %}
+                    <tr>
+                        <td>{{ obj.id }}</td>
+                        <td><a href="/car-objects/{{ obj.id }}">{{ obj.title }}</a></td>
+                        <td>
+                            {% if obj.image %}
+                                <img src="{{ obj.image }}" alt="{{ obj.title }}" style="height: 50px; object-fit: cover;">
+                            {% else %}
+                                <span class="text-muted">Нет изображения</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% endif %}
 {% endblock %}

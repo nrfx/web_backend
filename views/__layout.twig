@@ -24,7 +24,7 @@
                     <!-- остальные заменил на цикл по типам -->
                     {% for type in types %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/?type={{ type.title }}">{{ type.title }}</a>
+                            <a class="nav-link" href="/?type={{ type.id }}">{{ type.title }}</a>
                         </li>
                     {% endfor %}
                     <li class="nav-item">

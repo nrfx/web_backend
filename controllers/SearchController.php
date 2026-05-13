@@ -14,7 +14,7 @@ class SearchController extends BaseCarTwigController
         $info = isset($_GET['info']) ? $_GET['info'] : '';
 
         $sql = <<<EOL
-SELECT id, title
+SELECT id, title, image
 FROM car_objects
 WHERE (:title = '' OR title like CONCAT('%', :title, '%')) 
     AND (:info = '' OR info like CONCAT('%', :info, '%'))
@@ -28,6 +28,11 @@ EOL;
         $query->execute();
 
         $context['objects'] = $query->fetchAll();
+
+        // передаём текущие значения фильтров обратно в шаблон
+        $context['search_type'] = $type;
+        $context['search_title'] = $title;
+        $context['search_info'] = $info;
 
         return $context;
     }
