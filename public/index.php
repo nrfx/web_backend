@@ -10,6 +10,7 @@ require_once "../controllers/CarObjectCreateController.php";
 require_once "../controllers/CarObjectDeleteController.php";
 require_once "../controllers/CarObjectUpdateController.php";
 require_once "../controllers/CarTypeCreateController.php";
+require_once "../middlewares/LoginRequiredMiddleware.php";
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 
@@ -21,11 +22,11 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 $pdo = new PDO("mysql:host=localhost;dbname=my_db;charset=utf8", "root", "");
 
 $router = new Router($twig, $pdo);
-$router->add("/", MainController::class);
-$router->add("/search", SearchController::class);
-$router->add("/car-objects/create", CarObjectCreateController::class);
-$router->add("/car-types/create", CarTypeCreateController::class);
-$router->add("/car-objects/(?P<id>\d+)/delete", CarObjectDeleteController::class);
-$router->add("/car-objects/(?P<id>\d+)/update", CarObjectUpdateController::class);
-$router->add("/car-objects/(?P<id>\d+)", ObjectController::class);
+$router->add("/", MainController::class)->middleware(new LoginRequiredMiddleware());
+$router->add("/search", SearchController::class)->middleware(new LoginRequiredMiddleware());
+$router->add("/car-objects/create", CarObjectCreateController::class)->middleware(new LoginRequiredMiddleware());
+$router->add("/car-types/create", CarTypeCreateController::class)->middleware(new LoginRequiredMiddleware());
+$router->add("/car-objects/(?P<id>\d+)/delete", CarObjectDeleteController::class)->middleware(new LoginRequiredMiddleware());
+$router->add("/car-objects/(?P<id>\d+)/update", CarObjectUpdateController::class)->middleware(new LoginRequiredMiddleware());
+$router->add("/car-objects/(?P<id>\d+)", ObjectController::class)->middleware(new LoginRequiredMiddleware());
 $router->get_or_default(Controller404::class);
