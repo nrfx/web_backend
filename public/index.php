@@ -11,7 +11,12 @@ require_once "../controllers/CarObjectDeleteController.php";
 require_once "../controllers/CarObjectUpdateController.php";
 require_once "../controllers/CarTypeCreateController.php";
 require_once "../controllers/SetWelcomeController.php";
+require_once "../controllers/LoginController.php";
+require_once "../controllers/LogoutController.php";
 require_once "../middlewares/LoginRequiredMiddleware.php";
+
+session_set_cookie_params(60 * 60 * 10);
+session_start();
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 
@@ -31,4 +36,6 @@ $router->add("/car-objects/(?P<id>\d+)/delete", CarObjectDeleteController::class
 $router->add("/car-objects/(?P<id>\d+)/update", CarObjectUpdateController::class)->middleware(new LoginRequiredMiddleware());
 $router->add("/car-objects/(?P<id>\d+)", ObjectController::class)->middleware(new LoginRequiredMiddleware());
 $router->add("/set-welcome/", SetWelcomeController::class);
+$router->add("/login", LoginController::class);
+$router->add("/logout", LogoutController::class);
 $router->get_or_default(Controller404::class);
