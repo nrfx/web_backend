@@ -46,6 +46,9 @@ class ObjectController extends BaseCarTwigController
             ['title' => 'Картинка', 'url' => '/car-objects/' . $id . '?show=image', 'active' => ($show === 'image')],
             ['title' => 'Информация', 'url' => '/car-objects/' . $id . '?show=info', 'active' => ($show === 'info')]
         ];
+        $context["my_session_message"] = $_SESSION['welcome_message'] ?? '';
+        $context["messages"] = isset($_SESSION['messages']) ? $_SESSION['messages'] : "";
+
 
         return $context;
     }

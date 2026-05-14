@@ -3,7 +3,14 @@
 
 {% block content %}
     <h1>{{title}}</h1>
-    
+    сообщение из сессии {{my_session_message}}
+    <br>
+    последние сообщения:<br>
+    {% for m in messages %}
+        {{m}}<br>
+    {% endfor %}
+    <hr>
+
     <ul class="nav nav-pills">
         {% for item in objectMenu %}
             <li class="nav-item">

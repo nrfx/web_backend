@@ -10,6 +10,7 @@ require_once "../controllers/CarObjectCreateController.php";
 require_once "../controllers/CarObjectDeleteController.php";
 require_once "../controllers/CarObjectUpdateController.php";
 require_once "../controllers/CarTypeCreateController.php";
+require_once "../controllers/SetWelcomeController.php";
 require_once "../middlewares/LoginRequiredMiddleware.php";
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -29,4 +30,5 @@ $router->add("/car-types/create", CarTypeCreateController::class)->middleware(ne
 $router->add("/car-objects/(?P<id>\d+)/delete", CarObjectDeleteController::class)->middleware(new LoginRequiredMiddleware());
 $router->add("/car-objects/(?P<id>\d+)/update", CarObjectUpdateController::class)->middleware(new LoginRequiredMiddleware());
 $router->add("/car-objects/(?P<id>\d+)", ObjectController::class)->middleware(new LoginRequiredMiddleware());
+$router->add("/set-welcome/", SetWelcomeController::class);
 $router->get_or_default(Controller404::class);
