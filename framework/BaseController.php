@@ -17,13 +17,25 @@ abstract class BaseController
     // остальное не трогаем
     public function getContext(): array
     {
-        return [];
+        return [
+            'visited_pages' => $_SESSION['visited_pages'] ?? []
+        ];
     }
 
     public function process_response()
     {
         session_set_cookie_params(60 * 60 * 10);
         session_start();
+
+        // записываем текущую страницу в историю посещений
+        $currentUrl = $_SERVER['REQUEST_URI'];
+        if (!isset($_SESSION['visited_pages'])) {
+            $_SESSION['visited_pages'] = [];
+        }
+        array_push($_SESSION['visited_pages'], $currentUrl);
+        // оставляем только последние 10
+        $_SESSION['visited_pages'] = array_slice($_SESSION['visited_pages'], -10);
+
         $method = $_SERVER['REQUEST_METHOD']; // вытаскиваем метод
         $context = $this->getContext();
         if ($method == 'GET') { // если GET запрос то вызываем get
