@@ -25,7 +25,7 @@ abstract class BaseController
     public function process_response()
     {
         // записываем текущую страницу в историю посещений
-        $currentUrl = $_SERVER['REQUEST_URI'];
+        $currentUrl = urldecode($_SERVER['REQUEST_URI']);
         if (!isset($_SESSION['visited_pages'])) {
             $_SESSION['visited_pages'] = [];
         }
